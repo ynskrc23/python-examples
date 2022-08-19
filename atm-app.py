@@ -8,7 +8,7 @@ hesapElbistan = {
 }
 
 hesapMalatya = {
-    'isim': 'emre karaca',
+    'isim': 'yunus karaca',
     'hesap_no': '82004425',
     'bakiye': 10000,
     'avans': 8000
@@ -43,11 +43,27 @@ def paraCek(hesap, miktar):
             
         else:
             print("hesabınızda yeterli para mevcut değil")
-        
+       
+def paraTransferi(gonderenhesap, alicihesap,miktar):
+    if(gonderenhesap['bakiye'] >= miktar): 
+        alicihesap['bakiye'] += miktar
+        gonderenhesap['bakiye'] -= miktar
+        print(f"{alicihesap['hesap_no']} nolu hesaba para transferi yapıldı")
+    
+    else:
+        print(f"limit yetersiz hesabınızda {gonderenhesap['bakiye']} TL para mevcut")
+    
+     
 def bakiyeSorgula(hesap):
-    print(f"{hesap['hesap_no']} nolu hesabınızda { hesap['bakiye']} TL para mevcuttur. Avans hesabınızda {hesap['avans']} TL para mevcuttur")
+    print(f"{hesap['hesap_no']} nolu hesabınızda { hesap['bakiye']} TL para mevcuttur. Avans hesabınızda {hesap['avans']} TL para mevcuttur. Hesabınızda toplam {hesap['bakiye'] + hesap['avans']} TL para mevcuttur")
 
 
 paraCek(hesapElbistan, 1000)
+print("********************************")
 paraYatir(hesapElbistan, 20000)
+print("********************************")
+paraTransferi(hesapElbistan,hesapMalatya, 1500)
+print("********************************")
 bakiyeSorgula(hesapElbistan)
+print("********************************")
+bakiyeSorgula(hesapMalatya)
